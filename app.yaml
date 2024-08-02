@@ -1,0 +1,15 @@
+runtime: python311
+
+
+entrypoint: gunicorn -b :$PORT app:app
+
+handlers:
+- url: /
+  script: auto
+
+env_variables:
+  OPENAI_API_SECRET_NAME: "projects/the-recipe-genie/secrets/OPENAI_API_KEY/versions/latest"
+  GOOGLE_CLOUD_PROJECT: "the-recipe-genie"
+
+basic_scaling:
+  max_instances: 1
